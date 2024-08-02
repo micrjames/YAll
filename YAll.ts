@@ -42,6 +42,37 @@ export class YAll<T> {
 	  this._size++;
    }
 
+   insert(Key: T, whichNodeIdx: number) {
+	  if(whichNodeIdx < 0 || whichNodeIdx > this._size) return;
+	  if(whichNodeIdx === 0) this.prepend(Key);
+	  else {
+		 const node = new Node(Key);
+		 let previousNode = this.head;
+
+		 for(let it = 0; it < whichNodeIdx - 1; it++)
+		 	previousNode = previousNode!.next;
+		 node.next = previousNode!.next;
+		 previousNode!.next = node;
+		 this._size++;
+	  }
+   }
+
+   /*
+	* reverse() {
+	* 	let previousNode = null;
+	* 	let currentNode = this.head;
+	*
+	* 	while(currentNode) {
+	* 		let nextNode = currentNode.next;
+	* 		currentNode.next = previousNode;
+	* 		previousNode = currentNode;
+	* 		currentNode = nextNode;
+	* 	}
+	*
+	* 	this.head = previousNode;
+	* }
+	*/
+
    searchKey(Key: T) {
 	  if(this.isEmpty) return;
 	  else {
