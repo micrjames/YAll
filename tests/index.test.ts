@@ -16,7 +16,7 @@ describe("A linked list", () => {
 		 expect(yallIsEmpty).toBeTruthy();
 	  });
    });
-   describe("Having its values modified", () => {
+   describe("Having its values added to", () => {
 	  let appendedValue: number;
 	  beforeAll(() => {
 		 appendedValue = 1;
@@ -67,5 +67,17 @@ describe("A linked list", () => {
 			expect(idx).toBe(insertionIdx);
 		 });
 	  });
+   });
+   describe("Reversing the list", () => {
+	  let yallRev: YAll<number>;
+	  let revListSize: number;
+	  beforeAll(() => {
+		 yallRev = new YAll(); 
+		 revListSize = 0;
+	  });
+	  test.todo("Should exist.");
+	  test.todo("Should have the same size as before the reversal.");
+	  test.todo("Should give the reversed list from the original.");
+	  test.todo("Should be able to get the original back from a subsequent reversal.");
    });
 });

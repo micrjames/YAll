@@ -57,21 +57,19 @@ export class YAll<T> {
 	  }
    }
 
-   /*
-	* reverse() {
-	* 	let previousNode = null;
-	* 	let currentNode = this.head;
-	*
-	* 	while(currentNode) {
-	* 		let nextNode = currentNode.next;
-	* 		currentNode.next = previousNode;
-	* 		previousNode = currentNode;
-	* 		currentNode = nextNode;
-	* 	}
-	*
-	* 	this.head = previousNode;
-	* }
-	*/
+   reverse() {
+	  let previousNode = null;
+	  let currentNode = this.head;
+
+	  while(currentNode) {
+		 let nextNode = currentNode.next;
+		 currentNode.next = previousNode;
+		 previousNode = currentNode;
+		 currentNode = nextNode;
+	  }
+
+	  this.head = previousNode;
+   }
 
    searchKey(Key: T): number {
 	  if(this.isEmpty) return;
@@ -87,20 +85,19 @@ export class YAll<T> {
 	  }
    }
 
-   toString() {
+   toString(): string {
 	  if(this.isEmpty) {
-		 console.log("List is empty.");
 		 return;
 	  } else {
-		 let current = this.head;
+		 let currentNode = this.head;
 		 let output = "";
-		 while(current) {
-			output += current.Key;
-			output += current.next ? " ➝ " : "";
-			current = current.next;
+		 while(currentNode) {
+			output += currentNode.Key;
+			output += currentNode.next ? " ➝ " : "";
+			currentNode = currentNode.next;
 		 }
 
-		 console.log("linked list: ", output);
+		 return output;
 	  }
    }
 }
