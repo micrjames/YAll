@@ -73,14 +73,14 @@ export class YAll<T> {
 	* }
 	*/
 
-   searchKey(Key: T) {
+   searchKey(Key: T): number {
 	  if(this.isEmpty) return;
 	  else {
 		 let whichNodeIdx = 0;
 		 let currentNode = this.head;
 
 		 while(currentNode) {
-			if(currentNode.Key = Key) return whichNodeIdx;
+			if(currentNode.Key === Key) return whichNodeIdx;
 			currentNode = currentNode.next;
 			whichNodeIdx++;
 		 }

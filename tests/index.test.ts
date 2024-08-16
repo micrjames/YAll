@@ -10,7 +10,6 @@ describe("A linked list", () => {
    describe("Created", () => {
 	  test("Should exist.", () => {
 		 expect(yall).toBeDefined();
-		 yall.toString();
 	  });
 	  test("Should be empty.", () => {
 		 const yallIsEmpty = yall.isEmpty;
@@ -22,7 +21,6 @@ describe("A linked list", () => {
 	  beforeAll(() => {
 		 appendedValue = 1;
 		 yall.append(appendedValue);
-		 yall.toString();
 		 listSize++;
 	  });
 	  describe("Appending a value", () => {
@@ -40,7 +38,6 @@ describe("A linked list", () => {
 		 beforeAll(() => {
 			prependedValue = 2;
 			yall.prepend(prependedValue);
-			yall.toString();
 			listSize++;
 		 });
 		 test("Should have two values in the linked list.", () => {
@@ -59,16 +56,14 @@ describe("A linked list", () => {
 			insertedValue = 3;
 			insertionIdx = 2;
 			yall.insert(insertedValue, insertionIdx);
-			yall.toString();
 			listSize++;
 		 });
 		 test("Should have three values in the linked list.", () => {
 			const yallSize = yall.size;
 			expect(yallSize).toBe(listSize);
 		 });
-		 test("Should give index 1 as the index of the inserted value.", () => {
+		 test(`Should give index ${insertionIdx} as the index of the inserted value.`, () => {
 			const idx = yall.searchKey(insertedValue);
-			console.log(idx);
 			expect(idx).toBe(insertionIdx);
 		 });
 	  });
