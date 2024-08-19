@@ -71,13 +71,32 @@ describe("A linked list", () => {
    describe("Reversing the list", () => {
 	  let yallRev: YAll<number>;
 	  let revListSize: number;
+	  let yallString: string;
+	  let yallRevString: string;
 	  beforeAll(() => {
-		 yallRev = new YAll(); 
-		 revListSize = 0;
+		 yallString = yall.toString();
+		 listSize = yall.size;
+		 yall.reverse();
+		 yallRev = yall;
+		 yallRevString = yallRev.toString();
+		 revListSize = yallRev.size;
 	  });
-	  test.todo("Should exist.");
-	  test.todo("Should have the same size as before the reversal.");
-	  test.todo("Should give the reversed list from the original.");
-	  test.todo("Should be able to get the original back from a subsequent reversal.");
+	  test("Should exist.", () => {
+		 expect(yallRev).toBeDefined(); 
+	  });
+	  test("Should have the same size as before the reversal.", () => {
+		 expect(revListSize).toBe(listSize);
+	  });
+	  test("Should give the reversed list from the original.", () => {
+		 const reversedYallString = yallString.split('').reduce((reversed, char) => char + reversed, '');
+		 const stringsEqual = yallRevString === reversedYallString;
+		 expect(stringsEqual).toBeTruthy();
+	  });
+	  test("Should be able to get the original back from a subsequent reversal.", () => {
+		 yallRev.reverse();
+		 const reReversedYallString = yallRev.toString();
+		 const stringsEqual = reReversedYallString === yallString;
+		 expect(stringsEqual).toBeTruthy();
+	  });
    });
 });
