@@ -10,7 +10,7 @@ export class YAll<T> {
    }
 
    // O(1)
-   get isEmpty(): boolean {
+   get empty(): boolean {
 	  return this._size === 0;
    }
 
@@ -20,19 +20,17 @@ export class YAll<T> {
 
    // O(1)
    // Add to the beginning of the list.
-   prepend(Key: T) {
+   push_front(Key: T) {
 	  const node = new Node<T>(Key);
-	  if(!this.isEmpty)
-		 node.next = this.head;
+	  if(!this.empty) node.next = this.head;
 	  this.head = node;
 	  this._size++;
    }
 
    // Add to the end of the list.
-   append(Key: T) {
+   push_back(Key: T) {
 	  const node = new Node(Key);
-	  if(this.isEmpty)
-		 this.head = node;
+	  if(this.empty) this.head = node;
 	  else {
 		 let previousNode = this.head;
 		 while(previousNode?.next)
@@ -44,7 +42,7 @@ export class YAll<T> {
 
    insert(Key: T, whichNodeIdx: number) {
 	  if(whichNodeIdx < 0 || whichNodeIdx > this._size) return;
-	  if(whichNodeIdx === 0) this.prepend(Key);
+	  if(whichNodeIdx === 0) this.push_front(Key);
 	  else {
 		 const node = new Node(Key);
 		 let previousNode = this.head;
@@ -55,6 +53,45 @@ export class YAll<T> {
 		 previousNode!.next = node;
 		 this._size++;
 	  }
+   }
+
+   // Remove from specific index
+   erase(index: number) {
+	   if(index < 0 || index > this._size) return null;
+
+	   let removedNode = null;
+	   if(index == 0) {
+		   removedNode = this.head;
+		   this.head = this.head!.next;
+	   } else {
+		   let previousNode = this.head;
+		   for(let i = 0; i < index - 1; i++)
+			   previousNode = previousNode!.next;
+			   removedNode = previousNode!.next;
+			   previousNode!.next = removedNode!.next;
+	   }
+
+	   this._size--;
+   }
+
+   // Remove a value
+   remove_value(Key: T) {
+	   if(this.empty) return;
+
+	   if(this.head?.Key === Key) {
+		   this.head = this.head!.next;
+		   this._size--;
+	   } else {
+		   let previousNode = this.head;
+		   while(previousNode!.next && previousNode!.next.Key !== Key)
+			   previousNode = previousNode!.next;
+
+		   if(previousNode?.next) {
+			   let removedNode = previousNode!.next;
+			   previousNode!.next = removedNode!.next;
+			   this._size--;
+		   }
+	   }
    }
 
    reverse() {
@@ -71,8 +108,8 @@ export class YAll<T> {
 	  this.head = previousNode;
    }
 
-   searchKey(Key: T): number {
-	  if(this.isEmpty) return;
+   idx_at(Key: T): number {
+	  if(this.empty) return;
 	  else {
 		 let whichNodeIdx = 0;
 		 let currentNode = this.head;
@@ -86,9 +123,8 @@ export class YAll<T> {
    }
 
    toString(): string {
-	  if(this.isEmpty) {
-		 return;
-	  } else {
+	  if(this.empty) return;
+	  else {
 		 let currentNode = this.head;
 		 let output = "";
 		 while(currentNode) {

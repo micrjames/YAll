@@ -12,7 +12,7 @@ describe("A linked list", () => {
 		 expect(yall).toBeDefined();
 	  });
 	  test("Should be empty.", () => {
-		 const yallIsEmpty = yall.isEmpty;
+		 const yallIsEmpty = yall.empty;
 		 expect(yallIsEmpty).toBeTruthy();
 	  });
    });
@@ -20,7 +20,7 @@ describe("A linked list", () => {
 	  let appendedValue: number;
 	  beforeAll(() => {
 		 appendedValue = 1;
-		 yall.append(appendedValue);
+		 yall.push_back(appendedValue);
 		 listSize++;
 	  });
 	  describe("Appending a value", () => {
@@ -29,7 +29,7 @@ describe("A linked list", () => {
 			expect(yallSize).toBe(listSize);
 		 });
 		 test("Should give index 0 as the index of the appended value.", () => {
-			const idx = yall.searchKey(appendedValue);
+			const idx = yall.idx_at(appendedValue);
 			expect(idx).toBe(0);
 		 });
 	  });
@@ -37,7 +37,7 @@ describe("A linked list", () => {
 		 let prependedValue: number;
 		 beforeAll(() => {
 			prependedValue = 2;
-			yall.prepend(prependedValue);
+			yall.push_front(prependedValue);
 			listSize++;
 		 });
 		 test("Should have two values in the linked list.", () => {
@@ -45,7 +45,7 @@ describe("A linked list", () => {
 			expect(yallSize).toBe(listSize);
 		 });
 		 test("Should give index 0 as the index of the prepended value.", () => {
-			const idx = yall.searchKey(prependedValue);
+			const idx = yall.idx_at(prependedValue);
 			expect(idx).toBe(0);
 		 });
 	  });
@@ -63,7 +63,7 @@ describe("A linked list", () => {
 			expect(yallSize).toBe(listSize);
 		 });
 		 test(`Should give index ${insertionIdx} as the index of the inserted value.`, () => {
-			const idx = yall.searchKey(insertedValue);
+			const idx = yall.idx_at(insertedValue);
 			expect(idx).toBe(insertionIdx);
 		 });
 	  });
