@@ -1,4 +1,5 @@
 import { Node } from "./Node";
+import { StringBuilder } from "./StringBuilder/StringBuilder";
 
 export class YAll<T> {
    private head: (Node<T> | null);
@@ -29,12 +30,10 @@ export class YAll<T> {
 
    // Add to the end of the list.
    push_back(Key: T) {
-	  const node = new Node(Key);
+	  const node = new Node<T>(Key);
 	  if(this.empty) this.head = node;
 	  else {
-		 let previousNode = this.head;
-		 while(previousNode?.next)
-			previousNode = previousNode.next;
+		 let previousNode = this.iterate_list(this.head);
 		 previousNode!.next = node;
 	  }
 	  this._size++;
@@ -44,7 +43,7 @@ export class YAll<T> {
 	  if(whichNodeIdx < 0 || whichNodeIdx > this._size) return;
 	  if(whichNodeIdx === 0) this.push_front(Key);
 	  else {
-		 const node = new Node(Key);
+		 const node = new Node<T>(Key);
 		 let previousNode = this.head;
 
 		 for(let it = 0; it < whichNodeIdx - 1; it++)
@@ -98,12 +97,12 @@ export class YAll<T> {
 	  let previousNode = null;
 	  let currentNode = this.head;
 
-	  while(currentNode) {
+	  do {
 		 let nextNode = currentNode.next;
 		 currentNode.next = previousNode;
 		 previousNode = currentNode;
 		 currentNode = nextNode;
-	  }
+	  } while(currentNode);
 
 	  this.head = previousNode;
    }
@@ -125,15 +124,22 @@ export class YAll<T> {
    toString(): string {
 	  if(this.empty) return;
 	  else {
-		 let currentNode = this.head;
-		 let output = "";
-		 while(currentNode) {
-			output += currentNode.Key;
-			output += currentNode.next ? " ➝ " : "";
-			currentNode = currentNode.next;
-		 }
+		 let sb: StringBuilder = new StringBuilder();
 
-		 return output;
+		 this.iterate_list(this.head, node => {
+		    sb.append(`${node.Key}`).append(node.next ? " ➝ " : "");
+		 });
+
+		 return sb.build();
 	  }
+   }
+
+   protected iterate_list(node: Node<T>, cb?: (node: Node<T>) => void): Node<T> {
+	  do {
+		 if(cb) cb(node);
+		 node = node?.next;
+	  } while(node);
+
+	  return node;
    }
 }

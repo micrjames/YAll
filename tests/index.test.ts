@@ -20,7 +20,8 @@ describe("A linked list", () => {
 	  let appendedValue: number;
 	  beforeAll(() => {
 		 appendedValue = 1;
-		 yall.push_back(appendedValue);
+	 	 yall.push_back(appendedValue);
+		 console.log(yall.toString());
 		 listSize++;
 	  });
 	  describe("Appending a value", () => {
@@ -38,6 +39,7 @@ describe("A linked list", () => {
 		 beforeAll(() => {
 			prependedValue = 2;
 			yall.push_front(prependedValue);
+			console.log(yall.toString());
 			listSize++;
 		 });
 		 test("Should have two values in the linked list.", () => {
@@ -56,6 +58,7 @@ describe("A linked list", () => {
 			insertedValue = 3;
 			insertionIdx = 2;
 			yall.insert(insertedValue, insertionIdx);
+			console.log(yall.toString());
 			listSize++;
 		 });
 		 test("Should have three values in the linked list.", () => {
@@ -76,7 +79,9 @@ describe("A linked list", () => {
 	  beforeAll(() => {
 		 yallString = yall.toString();
 		 listSize = yall.size;
+		 console.log(yall.toString());
 		 yall.reverse();
+		 console.log(yall.toString());
 		 yallRev = yall;
 		 yallRevString = yallRev.toString();
 		 revListSize = yallRev.size;
