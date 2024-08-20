@@ -33,7 +33,7 @@ export class YAll<T> {
 	  const node = new Node<T>(Key);
 	  if(this.empty) this.head = node;
 	  else {
-		 let previousNode = this.iterate_list(this.head);
+		 let previousNode = this.iterate(this.head);
 		 previousNode!.next = node;
 	  }
 	  this._size++;
@@ -126,7 +126,7 @@ export class YAll<T> {
 	  else {
 		 let sb: StringBuilder = new StringBuilder();
 
-		 this.iterate_list(this.head, node => {
+		 this.iterate(this.head, node => {
 		    sb.append(`${node.Key}`).append(node.next ? " ➝ " : "");
 		 });
 
@@ -134,7 +134,7 @@ export class YAll<T> {
 	  }
    }
 
-   protected iterate_list(node: Node<T>, cb?: (node: Node<T>) => void): Node<T> {
+   protected iterate(node: Node<T>, cb?: (node: Node<T>) => void): Node<T> {
 	  do {
 		 if(cb) cb(node);
 		 node = node?.next;
