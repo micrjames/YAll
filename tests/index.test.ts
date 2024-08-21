@@ -61,6 +61,16 @@ describe("A linked list", () => {
 			console.log(yall.toString());
 			listSize++;
 		 });
+		 test("Should throw an error if we insert a value at an index  of -1.", () => {
+			expect(() => {
+			   yall.insert(4, -1);
+			}).toThrow("Out of Bounds.");
+		 });
+		 test("Should throw an error if we insert a value at an index  outside the linked list.", () => {
+			expect(() => {
+			   yall.insert(5, yall.size+1);
+			}).toThrow("Out of Bounds.");
+		 });
 		 test("Should have three values in the linked list.", () => {
 			const yallSize = yall.size;
 			expect(yallSize).toBe(listSize);

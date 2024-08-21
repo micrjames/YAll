@@ -30,28 +30,28 @@ export class YAll<T> {
 
    // Add to the end of the list.
    push_back(Key: T) {
-	  const node = new Node<T>(Key);
-	  if(this.empty) this.head = node;
-	  else {
-		 let previousNode = this.iterate(this.head);
-		 previousNode!.next = node;
-	  }
-	  this._size++;
+	  this.addTo(Key, this.size);
    }
 
    insert(Key: T, whichNodeIdx: number) {
-	  if(whichNodeIdx < 0 || whichNodeIdx > this._size) return;
+	  if(whichNodeIdx < 0 || whichNodeIdx > this._size)
+		 throw new Error("Out of Bounds.");
 	  if(whichNodeIdx === 0) this.push_front(Key);
-	  else {
-		 const node = new Node<T>(Key);
-		 let previousNode = this.head;
+	  else
+		 this.addTo(Key, whichNodeIdx, (node, previousNode) => {
+			node.next = previousNode!.next;
+		 });
+   }
 
-		 for(let it = 0; it < whichNodeIdx - 1; it++)
-		 	previousNode = previousNode!.next;
-		 node.next = previousNode!.next;
+   addTo(Key: T, itToIdx: number, cb?: (node: Node<T>, previousNode: Node<T>) => void) {
+	  const node = new Node<T>(Key);
+	  if(this.empty) this.head = node;
+	  else {
+		 const previousNode = this.iterateTo(this.head, itToIdx);
+		 if(cb) cb(node, previousNode);
 		 previousNode!.next = node;
-		 this._size++;
 	  }
+	  this._size++;
    }
 
    // Remove from specific index
@@ -139,6 +139,14 @@ export class YAll<T> {
 		 if(cb) cb(node);
 		 node = node?.next;
 	  } while(node);
+
+	  return node;
+   }
+   protected iterateTo(node: Node<T>, whichNodeIdx: number, cb?: (node: Node<T>) => void): Node<T> {
+	  for(let it = 0; it < whichNodeIdx - 1; it++) {
+		 if(cb) cb(node);
+		 node = node?.next;
+	  }
 
 	  return node;
    }
