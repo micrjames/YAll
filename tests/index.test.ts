@@ -48,6 +48,7 @@ describe("A linked list", () => {
 		 });
 		 test("Should give index 0 as the index of the prepended value.", () => {
 			const idx = yall.idx_at(prependedValue);
+			console.log(idx);
 			expect(idx).toBe(0);
 		 });
 	  });

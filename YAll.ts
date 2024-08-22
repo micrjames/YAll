@@ -111,13 +111,17 @@ export class YAll<T> {
 	  if(this.empty) return;
 	  else {
 		 let whichNodeIdx = 0;
-		 let currentNode = this.head;
+		 let idx: number;
 
-		 while(currentNode) {
-			if(currentNode.Key === Key) return whichNodeIdx;
+		 this.iterate(this.head, node => {
+			if(node.Key === Key) {
+			   idx = whichNodeIdx;
+			   return;
+			}
 			whichNodeIdx++;
-			currentNode = currentNode.next;
-		 }
+		 });
+
+		 return idx;
 	  }
    }
 
