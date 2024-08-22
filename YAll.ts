@@ -115,8 +115,8 @@ export class YAll<T> {
 
 		 while(currentNode) {
 			if(currentNode.Key === Key) return whichNodeIdx;
-			currentNode = currentNode.next;
 			whichNodeIdx++;
+			currentNode = currentNode.next;
 		 }
 	  }
    }
@@ -124,10 +124,16 @@ export class YAll<T> {
    toString(): string {
 	  if(this.empty) return;
 	  else {
+		 let keyStr: string;
 		 let sb: StringBuilder = new StringBuilder();
 
 		 this.iterate(this.head, node => {
-		    sb.append(`${node.Key}`).append(node.next ? " ➝ " : "");
+			let Key = node.Key;
+			if(typeof Key === "object")
+			   keyStr = JSON.stringify(Key);
+			else
+			   keyStr = `${Key}`;
+			sb.append(keyStr).append(node.next ? " ➝ " : "");
 		 });
 
 		 return sb.build();
