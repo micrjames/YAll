@@ -108,7 +108,7 @@ export class YAll<T> {
    }
 
    idx_at(Key: T): number {
-	  if(this.empty) return;
+	  if(this.empty) return -1;
 	  else {
 		 let whichNodeIdx = 0;
 		 let idx: number;
