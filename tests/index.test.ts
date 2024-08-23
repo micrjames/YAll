@@ -119,16 +119,42 @@ describe("A linked list", () => {
 	  let yallString: string;
 	  let yallListElements: string[];
 	  let yallListElementsStr: string;
-	  let idxToRemove: number;
+	  let idxToErase: number;
 	  let yallListElementsFiltered: string[];
 	  beforeAll(() => {
 		 yallString = yall.toString();
 		 yallListElements = yallString.split("➝");
-		 idxToRemove = 0;
-		 yallListElementsFiltered = yallListElements.filter((_, idx) => idx !== idxToRemove);
+		 idxToErase = 0;
+		 yallListElementsFiltered = yallListElements.filter((_, idx) => idx !== idxToErase);
 		 yallListElementsStr = yallListElementsFiltered.join("➝").trim();
 		 --listSize;
-		 yall.erase(0);
+		 yall.erase(idxToErase);
+		 console.log(yallListElementsStr, yall.toString());
+	  });
+	  test("Should have a size of 2.", () => {
+		 const yallSize = yall.size;
+		 const yallListElementsFilteredSize = yallListElementsFiltered.length;
+		 expect(yallSize).toBe(yallListElementsFilteredSize);
+	  });
+	  test("Should have the element at index 0 removed.", () => {
+		 yallString = yall.toString();
+	     expect(yallString).toBe(yallListElementsStr);
+	  });
+   });
+   describe("Remove a specific 'Key' from the list", () => {
+	  let yallString: string;
+	  let yallListElements: string[];
+	  let yallListElementsStr: string;
+	  let KeyToRemove: number;
+	  let yallListElementsFiltered: string[];
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallListElements = yallString.split("➝");
+		 KeyToRemove = 2;
+		 yallListElementsFiltered = yallListElements.filter((_, idx) => idx !== KeyToRemove);
+		 yallListElementsStr = yallListElementsFiltered.join("➝").trim();
+		 --listSize;
+		 yall.remove_value(KeyToRemove);
 		 console.log(yallListElementsStr, yall.toString());
 	  });
 	  test("Should have a size of 2.", () => {
