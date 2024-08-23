@@ -115,8 +115,34 @@ describe("A linked list", () => {
 		 expect(stringsEqual).toBeTruthy();
 	  });
    });
+   describe("Erase from the list at an index", () => {
+	  let yallString: string;
+	  let yallListElements: string[];
+	  let yallListElementsStr: string;
+	  let idxToRemove: number;
+	  let yallListElementsFiltered: string[];
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallListElements = yallString.split("➝");
+		 idxToRemove = 0;
+		 yallListElementsFiltered = yallListElements.filter((_, idx) => idx !== idxToRemove);
+		 yallListElementsStr = yallListElementsFiltered.join("➝").trim();
+		 --listSize;
+		 yall.erase(0);
+		 console.log(yallListElementsStr, yall.toString());
+	  });
+	  test("Should have a size of 2.", () => {
+		 const yallSize = yall.size;
+		 const yallListElementsFilteredSize = yallListElementsFiltered.length;
+		 expect(yallSize).toBe(yallListElementsFilteredSize);
+	  });
+	  test("Should have the element at index 0 removed.", () => {
+		 yallString = yall.toString();
+	     expect(yallString).toBe(yallListElementsStr);
+	  });
+   });
 });
-describe("A Point", () => {
+describe("A list of Points", () => {
    interface Point {
 	   x: number;
 	   y: number;
@@ -134,11 +160,18 @@ describe("A Point", () => {
 	  p3 = {x: 0, y: 1};
 	  yall.push_back(p3);
    });
-   test("The snake exists.", () => {
-	  let snakeYall = yall.toString();
-	  console.log(snakeYall);
+   test("Should exist.", () => {
+	  expect(yall).toBeDefined();
+   });
+   test("Should have a size of 3.", () => {
+	  const ptYAllSize = yall.size;
+	  expect(ptYAllSize).toBe(3);
+   });
+   test("Should have a size of 3.", () => {
+	  let pointYall = yall.toString();
+	  console.log(pointYall);
 	  yall.reverse();
-	  snakeYall = yall.toString();
-	  console.log(snakeYall);
+	  pointYall = yall.toString();
+	  console.log(pointYall);
    });
 });

@@ -43,7 +43,7 @@ export class YAll<T> {
 		 });
    }
 
-   addTo(Key: T, itToIdx: number, cb?: (node: Node<T>, previousNode: Node<T>) => void) {
+   protected addTo(Key: T, itToIdx: number, cb?: (node: Node<T>, previousNode: Node<T>) => void) {
 	  const node = new Node<T>(Key);
 	  if(this.empty) this.head = node;
 	  else {
@@ -55,19 +55,21 @@ export class YAll<T> {
    }
 
    // Remove from specific index
-   erase(index: number) {
-	   if(index < 0 || index > this._size) return null;
+   erase(whichNodeIdx: number) {
+	  if(whichNodeIdx < 0 || whichNodeIdx > this._size)
+		 throw new Error("Out of Bounds.");
 
-	   let removedNode = null;
-	   if(index == 0) {
+	  let removedNode = null;
+	  if(whichNodeIdx === 0) {
 		   removedNode = this.head;
 		   this.head = this.head!.next;
 	   } else {
 		   let previousNode = this.head;
-		   for(let i = 0; i < index - 1; i++)
+		   for(let i = 0; i < whichNodeIdx - 1; i++) {
 			   previousNode = previousNode!.next;
 			   removedNode = previousNode!.next;
 			   previousNode!.next = removedNode!.next;
+		   }
 	   }
 
 	   this._size--;
@@ -95,14 +97,14 @@ export class YAll<T> {
 
    reverse() {
 	  let previousNode = null;
-	  let currentNode = this.head;
+	  let node = this.head;
 
 	  do {
-		 let nextNode = currentNode.next;
-		 currentNode.next = previousNode;
-		 previousNode = currentNode;
-		 currentNode = nextNode;
-	  } while(currentNode);
+		 let nextNode = node.next;
+		 node.next = previousNode;
+		 previousNode = node;
+		 node = nextNode;
+	  } while(node);
 
 	  this.head = previousNode;
    }
