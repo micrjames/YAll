@@ -1,6 +1,6 @@
 import { YAll } from "../YAll";
 
-describe("A linked list", () => {
+describe("A linked list of numbers", () => {
    let yall: YAll<number>;
    let listSize: number;
    beforeAll(() => {
@@ -167,37 +167,101 @@ describe("A linked list", () => {
 	     expect(yallString).toBe(yallListElementsStr);
 	  });
    });
-});
-describe("A list of Points", () => {
-   interface Point {
-	   x: number;
-	   y: number;
-   };
-   let p1: Point;
-   let p2: Point;
-   let p3: Point;
-   let yall: YAll<Point>;
-   beforeAll(() => {
-	  yall = new YAll(); 
-	  p1 = {x: 0, y: 0};
-	  yall.push_back(p1);
-	  p2 = {x: 1, y: 0};
-	  yall.push_back(p2);
-	  p3 = {x: 0, y: 1};
-	  yall.push_back(p3);
+   describe("Get the value of the front item.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  let frontValue: number;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+		 frontValue = yall.front();
+	  });
+	  test("Should be a number.", () => {
+		 expect(frontValue).toStrictEqual(expect.any(Number));
+	  });
+	  test(`Should have the value of the first element of the list, ${yallString}.`, () => {
+		 const yallNodes = yallString.split("➝");
+		 const firstEl = yallNodes.shift();
+		 console.log(typeof +firstEl);
+		 // expect(frontValue).toBe();
+	  });
+	  test.todo("The list should still be same as before.");
+	  test.todo(`Should still have a size of ${yallStringSize} after callng the method.`);
+	  // front()
    });
-   test("Should exist.", () => {
-	  expect(yall).toBeDefined();
+
+   describe("Get the value of the end item.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+	  });
+	  test.todo("Should be a number.");
+	  test.todo(`Should have a size of ${yallStringSize} before calling the method.`);
+	  test.todo(`Should have the value of the last element of the list, ${yallString}.`);
+	  test.todo("The list should still be same as before.");
+	  test.todo(`Should still have a size of ${yallStringSize} after calling the method.`);
+	  // back()
    });
-   test("Should have a size of 3.", () => {
-	  const ptYAllSize = yall.size;
-	  expect(ptYAllSize).toBe(3);
+
+   describe("Remove the front item and return its value.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+	  });
+	  test.todo("Should be a number.");
+	  test.todo(`Should have a size of ${yallStringSize} before calling the method.`);
+	  test.todo(`Should have the value of the first element of the list, ${yallString}.`);
+	  test.todo("The list should not be the same as before.");
+	  test.todo(`Should have the size of ${yallStringSize - 1} after calling the method.`);
+	  // pop_front()
    });
-   test("Should have a size of 3.", () => {
-	  let pointYall = yall.toString();
-	  console.log(pointYall);
-	  yall.reverse();
-	  pointYall = yall.toString();
-	  console.log(pointYall);
+
+   describe("Remove the back item and return its value.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+	  });
+	  test.todo("Should be a number.");
+	  test.todo(`Should have a size of ${yallStringSize} before calling the method.`);
+	  test.todo(`Should have the value of the last element of the list, ${yallString}.`);
+	  test.todo("The list should not be the same as before.");
+	  test.todo(`Should have the size of ${yallStringSize - 1} after calling the method.`);
+	  // pop_back()
+   });
+
+   describe("Returns the value of the nth item.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+	  });
+	  test.todo("Should be a number.");
+	  test.todo(`Should have a size of ${yallStringSize} before calling the method.`);
+	  test.todo(`Should have the value of the nth element of the list, ${yallString}.`);
+	  test.todo("The list should be the same as before.");
+	  test.todo(`Should have the size of ${yallStringSize} after calling the method.`);
+	  // value_at(idx: number)
+   });
+
+   describe("Returns the value of the node at the nth position from the end of the list.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+	  });
+	  test.todo("Should be a number.");
+	  test.todo(`Should have a size of ${yallStringSize} before calling the method.`);
+	  test.todo(`Should have the value of the nth element from the end of the list, ${yallString}.`);
+	  test.todo("The list should be the same as before.");
+	  test.todo(`Should have the size of ${yallStringSize} after calling the method.`);
+	  // value_n_from_end(idx: number)
    });
 });

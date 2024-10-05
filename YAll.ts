@@ -19,6 +19,25 @@ export class YAll<T> {
 	  return this._size;
    }
 
+   front(): T {
+	  return this.head?.Key;
+   }
+
+   back() {
+   }
+
+   pop_front() {
+   }
+
+   pop_back() {
+   }
+
+   value_at(idx: number) {
+   }
+
+   value_n_from_end(idx: number) {
+   }
+
    // O(1)
    // Add to the beginning of the list.
    push_front(Key: T) {
