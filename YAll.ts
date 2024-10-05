@@ -28,7 +28,14 @@ export class YAll<T> {
 	  return lastNode?.Key;
    }
 
-   pop_front() {
+   pop_front(): T {
+	  if(this.empty) return;
+
+	  const removedNode = this.head;
+	  this.head = this.head!.next;
+	  this._size--;
+
+	  return removedNode?.Key;
    }
 
    pop_back() {

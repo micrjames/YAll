@@ -219,16 +219,27 @@ describe("A linked list of numbers", () => {
    describe("Remove the front item and return its value.", () => {
 	  let yallString: string;
 	  let yallStringSize: number;
+	  let frontItem: number;
 	  beforeAll(() => {
 		 yallString = yall.toString();
 		 yallStringSize = yall.size;
+		 frontItem = yall.pop_front();
 	  });
-	  test.todo("Should be a number.");
-	  test.todo(`Should have a size of ${yallStringSize} before calling the method.`);
-	  test.todo(`Should have the value of the first element of the list, ${yallString}.`);
-	  test.todo("The list should not be the same as before.");
-	  test.todo(`Should have the size of ${yallStringSize - 1} after calling the method.`);
-	  // pop_front()
+	  test("Should be a number.", () => {
+		 expect(frontItem).toStrictEqual(expect.any(Number));
+	  });
+	  test(`Should have the value of the first element of the list, ${yallString}.`, () => {
+		 const yallNodes = yallString.split("➝");
+		 const firstEl = yallNodes.shift();
+		 expect(frontItem).toBe(+firstEl);
+	  });
+	  test("The list should not be the same as before.", () => {
+		 expect(yallString).not.toBe(yall.toString());
+	  });
+	  test(`Should have the size of ${yallStringSize - 1} after calling the method.`, () => {
+		 const newYallStringSize = yall.size;
+		 expect(newYallStringSize).toBe(yallStringSize-1);
+	  });
    });
 
    describe("Remove the back item and return its value.", () => {
