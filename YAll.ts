@@ -23,7 +23,9 @@ export class YAll<T> {
 	  return this.head?.Key;
    }
 
-   back() {
+   back(): T {
+	  const lastNode = this.iterateTo(this.head, this.size);
+	  return lastNode?.Key;
    }
 
    pop_front() {
