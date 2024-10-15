@@ -124,6 +124,32 @@ describe("A list of Points", () => {
 		 expect(stringsEqual).toBeTruthy();
 	  });
    });
+   describe("Erase from the list at an index", () => {
+	  let yallString: string;
+	  let yallListElements: string[];
+	  let yallListElementsStr: string;
+	  let idxToErase: number;
+	  let yallListElementsFiltered: string[];
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallListElements = yallString.split("➝");
+		 idxToErase = 0;
+		 yallListElementsFiltered = yallListElements.filter((_, idx) => idx !== idxToErase);
+		 yallListElementsStr = yallListElementsFiltered.join("➝").trim();
+		 --listSize;
+		 yall.erase(idxToErase);
+		 console.log(yallListElementsStr, yall.toString());
+	  });
+	  test("Should have a size of 2.", () => {
+		 const yallSize = yall.size;
+		 const yallListElementsFilteredSize = yallListElementsFiltered.length;
+		 expect(yallSize).toBe(yallListElementsFilteredSize);
+	  });
+	  test("Should have the element at index 0 removed.", () => {
+		 yallString = yall.toString();
+	     expect(yallString).toBe(yallListElementsStr);
+	  });
+   });
 });
 /*
 */
