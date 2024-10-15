@@ -176,6 +176,28 @@ describe("A list of Points", () => {
 	     expect(yallString).toBe(yallListElementsStr);
 	  });
    });
+   describe("Get the value of the front item.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  let frontValue: IPoint;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+		 frontValue = yall.front();
+	  });
+	  // TODO: Check type of 'frontValue'
+	  test(`Should have the value of the first element of the list, ${yallString}.`, () => {
+		 const yallNodes = yallString.split("➝");
+		 const firstEl = yallNodes.shift().trim();
+		 expect(JSON.stringify(frontValue)).toBe(firstEl);
+	  });
+	  test("The list should still be same as before.", () => {
+		 expect(yallString).toEqual(yall.toString());
+	  });
+	  test(`Should still have a size of ${yallStringSize} after callng the method.`, () => {
+		 expect(yallStringSize).toBe(yall.size);
+	  });
+   });
 });
 /*
 */
