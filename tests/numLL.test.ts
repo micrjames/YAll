@@ -191,7 +191,6 @@ describe("A linked list of numbers", () => {
 		 expect(yallStringSize).toBe(yall.size);
 	  });
    });
-
    describe("Get the value of the end item.", () => {
 	  let yallString: string;
 	  let yallStringSize: number;
