@@ -28,17 +28,30 @@ export class YAll<T> {
 	  return lastNode?.Key;
    }
 
-   pop_front(): T {
-	  if(this.empty) return;
-
-	  const removedNode = this.head;
-	  this.head = this.head!.next;
+   pop_front(): T | null {
+	  if(this.empty) return null;
+	  let removedNode = null;
 	  this._size--;
+	  removedNode = this.head;
+	  this.head = this.head!.next;
 
 	  return removedNode?.Key;
    }
 
-   pop_back() {
+   pop_back(): T | null {
+	  if(this.empty) return null;
+
+	  const whichNodeIdx = this._size;
+	  let removedNode = null;
+	  let previousNode = this.head;
+	  for(let i = 0; i < whichNodeIdx - 1; i++) {
+	     previousNode = previousNode!.next;
+		 removedNode = previousNode!.next;
+		 previousNode!.next = removedNode!.next;
+	  }
+	  this._size--;
+
+	  return removedNode?.Key;
    }
 
    value_at(idx: number) {

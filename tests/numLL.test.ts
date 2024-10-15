@@ -245,24 +245,43 @@ describe("A linked list of numbers", () => {
    describe("Remove the back item and return its value.", () => {
 	  let yallString: string;
 	  let yallStringSize: number;
+	  let lastEl: number;
 	  beforeAll(() => {
 		 yallString = yall.toString();
+		 console.log(yallString);
 		 yallStringSize = yall.size;
+		 lastEl = yall.pop_back();
+		 console.log(lastEl, yall.toString());
 	  });
-	  test.todo("Should be a number.");
-	  test.todo(`Should have a size of ${yallStringSize} before calling the method.`);
-	  test.todo(`Should have the value of the last element of the list, ${yallString}.`);
-	  test.todo("The list should not be the same as before.");
-	  test.todo(`Should have the size of ${yallStringSize - 1} after calling the method.`);
-	  // pop_back()
+	  test("Should be undefined since there are no entries in the list.", () => {
+		 expect(lastEl).toBeUndefined();
+	  });
+	  test(`Should have a size of ${yallStringSize} before calling the method.`, () => {
+		 expect(yallStringSize).toBe(1);
+	  });
+	  test(`Should have the value of the last element of the list, ${yallString}.`, () => {
+		 expect(+yallString).toBe(3);
+	  });
+	  test("The list should not be the same as before.", () => {
+		 expect(yallString).not.toBe(yall.toString());
+	  });
+	  test(`Should have the size of ${yallStringSize - 1} after calling the method.`, () => {
+		 const newYallStringSize = yall.size;
+		 expect(newYallStringSize).toBe(yallStringSize-1);
+	  });
    });
 
    describe("Returns the value of the nth item.", () => {
 	  let yallString: string;
 	  let yallStringSize: number;
 	  beforeAll(() => {
-		 yallString = yall.toString();
-		 yallStringSize = yall.size;
+	  	 yall.push_back(1);
+	  	 yall.push_back(2);
+	  	 yall.push_front(3);
+		 const yallString = yall.toString();
+		 console.log(yallString);
+		 yall.pop_front();
+		 console.log(yall.toString());
 	  });
 	  test.todo("Should be a number.");
 	  test.todo(`Should have a size of ${yallStringSize} before calling the method.`);
