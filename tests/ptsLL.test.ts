@@ -90,4 +90,40 @@ describe("A list of Points", () => {
 		 });
 	  });
    });
+   describe("Reversing the list", () => {
+	  let yallRev: YAll<IPoint>;
+	  let revListSize: number;
+	  let yallString: string;
+	  let yallRevString: string;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 listSize = yall.size;
+		 console.log(yall.toString());
+		 yall.reverse();
+		 console.log(yall.toString());
+		 yallRev = yall;
+		 yallRevString = yallRev.toString();
+		 revListSize = yallRev.size;
+	  });
+	  test("Should exist.", () => {
+		 expect(yallRev).toBeDefined(); 
+	  });
+	  test("Should have the same size as before the reversal.", () => {
+		 expect(revListSize).toBe(listSize);
+	  });
+	  test("Should give the reversed list from the original.", () => {
+		 const reversedYallString = yallString.split(' ➝ ').reverse().join(' ➝ ');
+		 const stringsEqual = yallRevString === reversedYallString;
+		 expect(stringsEqual).toBeTruthy();
+		 console.log(yallRevString, reversedYallString);
+	  });
+	  test("Should be able to get the original back from a subsequent reversal.", () => {
+		 yallRev.reverse();
+		 const reReversedYallString = yallRev.toString();
+		 const stringsEqual = reReversedYallString === yallString;
+		 expect(stringsEqual).toBeTruthy();
+	  });
+   });
 });
+/*
+*/
