@@ -54,7 +54,8 @@ export class YAll<T> {
 	  return removedNode?.Key;
    }
 
-   value_at(idx: number) {
+   value_at(idx: number): T | null {
+	  return this.iterateTo(this.head, idx)?.Key;
    }
 
    value_n_from_end(idx: number) {

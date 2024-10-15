@@ -274,21 +274,26 @@ describe("A linked list of numbers", () => {
    describe("Returns the value of the nth item.", () => {
 	  let yallString: string;
 	  let yallStringSize: number;
+	  let nth_value: number;
 	  beforeAll(() => {
 	  	 yall.push_back(1);
 	  	 yall.push_back(2);
 	  	 yall.push_front(3);
-		 const yallString = yall.toString();
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
 		 console.log(yallString);
-		 yall.pop_front();
-		 console.log(yall.toString());
+		 nth_value = yall.value_at(yall.size); 
+		 console.log(nth_value);
 	  });
-	  test.todo("Should be a number.");
-	  test.todo(`Should have a size of ${yallStringSize} before calling the method.`);
-	  test.todo(`Should have the value of the nth element of the list, ${yallString}.`);
-	  test.todo("The list should be the same as before.");
-	  test.todo(`Should have the size of ${yallStringSize} after calling the method.`);
-	  // value_at(idx: number)
+	  test("Should be a number.", () => {
+		 expect(nth_value).toStrictEqual(expect.any(Number));
+	  });
+	  test(`Should have the value of the nth element of the list, ${yallString}.`, () => {
+		 expect(nth_value).toBe(2);
+	  });
+	  test("The list should be the same as before.", () => {
+		 expect(yallStringSize).toBe(yall.size);
+	  });
    });
 
    describe("Returns the value of the node at the nth position from the end of the list.", () => {
@@ -299,10 +304,8 @@ describe("A linked list of numbers", () => {
 		 yallStringSize = yall.size;
 	  });
 	  test.todo("Should be a number.");
-	  test.todo(`Should have a size of ${yallStringSize} before calling the method.`);
 	  test.todo(`Should have the value of the nth element from the end of the list, ${yallString}.`);
 	  test.todo("The list should be the same as before.");
-	  test.todo(`Should have the size of ${yallStringSize} after calling the method.`);
 	  // value_n_from_end(idx: number)
    });
 });
