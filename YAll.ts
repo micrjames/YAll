@@ -54,11 +54,15 @@ export class YAll<T> {
 	  return removedNode?.Key;
    }
 
-   value_at(idx: number): T | null {
-	  return this.iterateTo(this.head, idx)?.Key;
+   value_at(whichNodeIdx: number): T | null {
+	  if(whichNodeIdx < 0 || whichNodeIdx > this._size)
+		 throw new Error("Out of Bounds.");
+	  return this.iterateTo(this.head, whichNodeIdx)?.Key;
    }
 
-   value_n_from_end(idx: number) {
+   value_n_from_end(idx: number): T | null {
+	  const idx_to_end = this.size - idx;
+	  return this.value_at(idx_to_end);
    }
 
    // O(1)

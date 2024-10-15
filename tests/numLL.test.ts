@@ -294,18 +294,36 @@ describe("A linked list of numbers", () => {
 	  test("The list should be the same as before.", () => {
 		 expect(yallStringSize).toBe(yall.size);
 	  });
+	  test("Should throw an error if we get the value at an index  of -1.", () => {
+		 expect(() => {
+			nth_value = yall.value_at(-1); 
+		 }).toThrow("Out of Bounds.");
+	  });
    });
 
    describe("Returns the value of the node at the nth position from the end of the list.", () => {
 	  let yallString: string;
 	  let yallStringSize: number;
+	  let nth_value_from_end: number;
 	  beforeAll(() => {
 		 yallString = yall.toString();
 		 yallStringSize = yall.size;
+		 nth_value_from_end = yall.value_n_from_end(0);
+		 console.log(nth_value_from_end);
 	  });
-	  test.todo("Should be a number.");
-	  test.todo(`Should have the value of the nth element from the end of the list, ${yallString}.`);
-	  test.todo("The list should be the same as before.");
-	  // value_n_from_end(idx: number)
+	  test("Should be a number.", () => {
+		 expect(nth_value_from_end).toStrictEqual(expect.any(Number));
+	  });
+	  test(`Should have the value of the nth element from the end of the list, ${yallString}.`, () => {
+		 expect(nth_value_from_end).toBe(2);
+	  });
+	  test("The list should be the same as before.", () => {
+		 expect(yallStringSize).toBe(yall.size);
+	  });
+	  test("Should throw an error if we get the value at an index  of -1.", () => {
+		 expect(() => {
+			nth_value_from_end = yall.value_n_from_end(-1); 
+		 }).toThrow("Out of Bounds.");
+	  });
    });
 });
