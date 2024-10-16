@@ -253,6 +253,34 @@ describe("A list of Points", () => {
 		 expect(newYallStringSize).toBe(yallStringSize-1);
 	  });
    });
+   describe("Remove the back item and return its value.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  let lastEl: IPoint;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 console.log(yallString);
+		 yallStringSize = yall.size;
+		 lastEl = yall.pop_back();
+		 console.log(lastEl, yall.toString());
+	  });
+	  test("Should be undefined since there are no entries in the list.", () => {
+		 expect(lastEl).toBeUndefined();
+	  });
+	  test(`Should have a size of ${yallStringSize} before calling the method.`, () => {
+		 expect(yallStringSize).toBe(1);
+	  });
+	  test(`Should have the value of the last element of the list, ${yallString}.`, () => {
+		 expect(yallString).toBe(JSON.stringify({"x": 0, "y": 1}));
+	  });
+	  test("The list should not be the same as before.", () => {
+		 expect(yallString).not.toBe(yall.toString());
+	  });
+	  test(`Should have the size of ${yallStringSize-1} after calling the method.`, () => {
+		 const newYallStringSize = yall.size;
+		 expect(newYallStringSize).toBe(yallStringSize-1);
+	  });
+   });
 });
 /*
 */
