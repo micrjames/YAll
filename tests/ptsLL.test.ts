@@ -313,6 +313,32 @@ describe("A list of Points", () => {
 		 }).toThrow("Out of Bounds.");
 	  });
    });
+   describe("Returns the value of the node at the nth position from the end of the list.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  let nth_value_from_end: IPoint;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+		 nth_value_from_end = yall.value_n_from_end(0);
+		 console.log(nth_value_from_end);
+	  });
+	  // TODO: Check type of 'frontValue'
+	  /*
+	  test("Should be a number.", () => {
+		 expect(backValue).toStrictEqual(expect.any(Number));
+	  });
+	  */
+	  test(`Should have the value of the nth element from the end of the list, ${yallString}.`, () => {
+		 expect(JSON.stringify(nth_value_from_end)).toBe(JSON.stringify({"x": 1, "y": 0}));
+	  });
+	  test("The list should be the same as before.", () => {
+		 expect(yallStringSize).toBe(yall.size);
+	  });
+	  test("Should throw an error if we get the value at an index  of -1.", () => {
+		 expect(() => {
+			nth_value_from_end = yall.value_n_from_end(-1); 
+		 }).toThrow("Out of Bounds.");
+	  });
+   });
 });
-/*
-*/
