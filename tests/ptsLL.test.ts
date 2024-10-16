@@ -281,6 +281,38 @@ describe("A list of Points", () => {
 		 expect(newYallStringSize).toBe(yallStringSize-1);
 	  });
    });
+   describe("Returns the value of the nth item.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  let nth_value: IPoint;
+	  beforeAll(() => {
+	  	 yall.push_back(pts[0]);
+	  	 yall.push_back(pts[1]);
+	  	 yall.push_front(pts[2]);
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+		 console.log(yallString);
+		 nth_value = yall.value_at(yall.size); 
+		 console.log(nth_value);
+	  });
+	  // TODO: Check type of 'frontValue'
+	  /*
+	  test("Should be a number.", () => {
+		 expect(backValue).toStrictEqual(expect.any(Number));
+	  });
+	  */
+	  test(`Should have the value of the nth element of the list, ${yallString}.`, () => {
+		 expect(JSON.stringify(nth_value)).toBe(JSON.stringify({"x": 1, "y": 0}));
+	  });
+	  test("The list should be the same as before.", () => {
+		 expect(yallStringSize).toBe(yall.size);
+	  });
+	  test("Should throw an error if we get the value at an index  of -1.", () => {
+		 expect(() => {
+			nth_value = yall.value_at(-1); 
+		 }).toThrow("Out of Bounds.");
+	  });
+   });
 });
 /*
 */

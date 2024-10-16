@@ -297,7 +297,6 @@ describe("A linked list of numbers", () => {
 		 }).toThrow("Out of Bounds.");
 	  });
    });
-
    describe("Returns the value of the node at the nth position from the end of the list.", () => {
 	  let yallString: string;
 	  let yallStringSize: number;
