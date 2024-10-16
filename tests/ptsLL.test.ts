@@ -198,6 +198,61 @@ describe("A list of Points", () => {
 		 expect(yallStringSize).toBe(yall.size);
 	  });
    });
+   describe("Get the value of the end item.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  let backValue: IPoint;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+		 backValue = yall.back();
+	  });
+	  // TODO: Check type of 'frontValue'
+	  /*
+	  test("Should be a number.", () => {
+		 expect(backValue).toStrictEqual(expect.any(Number));
+	  });
+	  */
+	  test(`Should have the value of the last element of the list, ${yallString}.`, () => {
+		 const yallNodes = yallString.split("➝");
+		 const lastEl = yallNodes.pop().trim();
+		 expect(JSON.stringify(backValue)).toBe(lastEl);
+	  });
+	  test("The list should still be same as before.", () => {
+		 expect(yallString).toEqual(yall.toString());
+	  });
+	  test(`Should still have a size of ${yallStringSize} after calling the method.`, () => {
+		 expect(yallStringSize).toBe(yall.size);
+	  });
+   });
+   describe("Remove the front item and return its value.", () => {
+	  let yallString: string;
+	  let yallStringSize: number;
+	  let frontItem: IPoint;
+	  beforeAll(() => {
+		 yallString = yall.toString();
+		 yallStringSize = yall.size;
+		 frontItem = yall.pop_front();
+	  });
+	  // TODO: Check type of 'frontValue'
+	  /*
+	  test("Should be a number.", () => {
+		 expect(backValue).toStrictEqual(expect.any(Number));
+	  });
+	  */
+	  test(`Should have the value of the first element of the list, ${yallString}.`, () => {
+		 const yallNodes = yallString.split("➝");
+		 const firstEl = yallNodes.shift().trim();
+		 expect(JSON.stringify(frontItem)).toBe(firstEl);
+	  });
+	  test("The list should not be the same as before.", () => {
+		 expect(yallString).not.toBe(yall.toString());
+	  });
+	  test(`Should have the size of ${yallStringSize - 1} after calling the method.`, () => {
+		 const newYallStringSize = yall.size;
+		 expect(newYallStringSize).toBe(yallStringSize-1);
+	  });
+   });
 });
 /*
 */

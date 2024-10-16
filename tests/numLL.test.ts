@@ -240,7 +240,6 @@ describe("A linked list of numbers", () => {
 		 expect(newYallStringSize).toBe(yallStringSize-1);
 	  });
    });
-
    describe("Remove the back item and return its value.", () => {
 	  let yallString: string;
 	  let yallStringSize: number;
@@ -269,7 +268,6 @@ describe("A linked list of numbers", () => {
 		 expect(newYallStringSize).toBe(yallStringSize-1);
 	  });
    });
-
    describe("Returns the value of the nth item.", () => {
 	  let yallString: string;
 	  let yallStringSize: number;
